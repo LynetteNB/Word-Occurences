@@ -17,7 +17,7 @@ public class FileHelper {
         try {
             fileLines = Files.readAllLines(Paths.get(filePath));
         } catch (IOException e) {
-            System.out.println("Unable to read the file provided!");
+            System.out.println("Unable to read the file provided! Check the input filepath.");
             e.printStackTrace();
         }
         return fileLines;
@@ -32,16 +32,13 @@ public class FileHelper {
         try {
             if(Paths.get(filePath).getParent() != null && !Files.exists(Paths.get(filePath).getParent())){
                 Files.createDirectory(Paths.get(filePath).getParent());
+            } else if(!Files.exists(Paths.get(filePath))) {
+                Files.createFile(Paths.get(filePath));
             }
-            Files.createFile(Paths.get(filePath));
             Files.write(Paths.get(filePath), contents);
         } catch (IOException e) {
-            System.out.println("Unable to create new output file!");
+            System.out.println("Unable to create new output file! Try a different output filepath.");
             e.printStackTrace();
         }
-    }
-
-    public static void main(String[] args) {
-        outputFile("new/output.txt", readFile("input.txt"));
     }
 }

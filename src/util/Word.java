@@ -1,21 +1,19 @@
 package util;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
+/**
+ * Word object includes a word string and the number of occurences of that word.
+ */
 public class Word {
     private String word;
     private int occurrences = 1;
-    private static List<String> wordList = new ArrayList<>();
-    public static List<Word> objWordList = new ArrayList<>();
 
     public Word(String word) {
         this.word = word;
-        wordList.add(word);
-        objWordList.add(this);
     }
 
-    private void addOccurrence() {
+    public void addOccurrence() {
         occurrences += 1;
     }
 
@@ -23,16 +21,8 @@ public class Word {
         return occurrences;
     }
 
-    public static boolean checkWordList(String word) {
-        return wordList.contains(word);
-    }
-
-    public static void updateWord(String wordString) {
-        for(Word word : objWordList) {
-            if(word.word.equals(wordString)) {
-                word.addOccurrence();
-            }
-        }
+    public String getWord() {
+        return word;
     }
 
     @Override
@@ -42,5 +32,18 @@ public class Word {
             equals += "=";
         }
         return String.format("%8s | %s (%d)", word, equals, occurrences);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Word word = (Word) o;
+        return Objects.equals(this.word, word.word);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(word, occurrences);
     }
 }
