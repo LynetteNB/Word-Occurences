@@ -29,7 +29,7 @@ public class ParagraphHistogram {
     public void exportHistogram() {
         String paragraph = refactorLines(FileHelper.readFile(this.inputFile));
         List<String> newFileLines = new ArrayList<>();
-        for(String word : Arrays.asList(paragraph.split(" "))) {
+        for(String word : paragraph.split(" ")) {
             Word tempWord = new Word(word);
             if(objWordList.contains(tempWord))
                 objWordList.get(objWordList.indexOf(tempWord)).addOccurrence();

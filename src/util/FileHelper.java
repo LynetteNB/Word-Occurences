@@ -32,7 +32,8 @@ public class FileHelper {
         try {
             if(Paths.get(filePath).getParent() != null && !Files.exists(Paths.get(filePath).getParent())){
                 Files.createDirectory(Paths.get(filePath).getParent());
-            } else if(!Files.exists(Paths.get(filePath))) {
+            }
+            if(!Files.exists(Paths.get(filePath))) {
                 Files.createFile(Paths.get(filePath));
             }
             Files.write(Paths.get(filePath), contents);
