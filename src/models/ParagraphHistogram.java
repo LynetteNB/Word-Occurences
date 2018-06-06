@@ -1,31 +1,40 @@
-import util.FileHelper;
-import util.Word;
+package models;
 
-import java.util.*;
+import util.FileHelper;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ParagraphHistogram {
     private String inputFile;
     private String outputFile;
+    private List<Word> objWordList = new ArrayList<>();
 
     public ParagraphHistogram(String inputFile, String outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
+        this.exportHistogram();
+    }
+
+    public List<Word> getObjWordList() {
+        return objWordList;
     }
 
     /**
      * Reads the lines from the input file, counts the occurence of each word, creates a histogram of words in the
      * input file, and saves it in an output file.
      */
-    public void createHistogram() {
+    public void exportHistogram() {
         String paragraph = refactorLines(FileHelper.readFile(this.inputFile));
         List<String> newFileLines = new ArrayList<>();
-        List<Word> objWordList = new ArrayList<>();
         for(String word : Arrays.asList(paragraph.split(" "))) {
-            Word temp = new Word(word);
-            if(objWordList.contains(temp))
-                objWordList.get(objWordList.indexOf(temp)).addOccurrence();
+            Word tempWord = new Word(word);
+            if(objWordList.contains(tempWord))
+                objWordList.get(objWordList.indexOf(tempWord)).addOccurrence();
             else
-                objWordList.add(temp);
+                objWordList.add(tempWord);
         }
         objWordList.sort(Comparator.comparing(w -> -w.getOccurrences()));
         for(Word word : objWordList) {
@@ -46,10 +55,5 @@ public class ParagraphHistogram {
         }
 
         return paragraph.toString();
-    }
-
-    public static void main(String[] args) {
-        ParagraphHistogram ph = new ParagraphHistogram("input.txt", "output.txt");
-        ph.createHistogram();
     }
 }

@@ -2,7 +2,7 @@
 This is my submittal for HEB's Developer I coding challenge. 
 
 ## Getting Started
-Running the ParagraphHistogram.java file in /src directory will read input.txt. When run, ParagraphHistogram will create (or overwrite file if already exists) output.txt in root directory with a histogram of the words from input.txt.
+Running the HistogramRunner.java file in /src directory will read input.txt. When run, ParagraphHistogram will create (or overwrite file if already exists) output.txt in root directory with a histogram of the words from input.txt.
 
 ## Example
 
