@@ -15,7 +15,6 @@ public class ParagraphHistogram {
     public ParagraphHistogram(String inputFile, String outputFile) {
         this.inputFile = inputFile;
         this.outputFile = outputFile;
-        this.exportHistogram();
     }
 
     public List<Word> getObjWordList() {
@@ -23,10 +22,17 @@ public class ParagraphHistogram {
     }
 
     /**
-     * Reads the lines from the input file, counts the occurence of each word, creates a histogram of words in the
-     * input file, and saves it in an output file.
+     * Creates the output txt file of a histogram using the words from the input file.
      */
     public void exportHistogram() {
+        FileHelper.outputFile(this.outputFile, createHistogram());
+    }
+
+    /**
+     * Reads the lines from the input file, counts the occurence of each word, and creates a histogram of words.
+     * @return A list of strings that create a histogram of words and their occurences.
+     */
+    public List<String> createHistogram() {
         String paragraph = refactorLines(FileHelper.readFile(this.inputFile));
         List<String> newFileLines = new ArrayList<>();
         for(String word : paragraph.split(" ")) {
@@ -40,7 +46,7 @@ public class ParagraphHistogram {
         for(Word word : objWordList) {
             newFileLines.add(word.toString());
         }
-        FileHelper.outputFile(this.outputFile, newFileLines);
+        return newFileLines;
     }
 
     /**

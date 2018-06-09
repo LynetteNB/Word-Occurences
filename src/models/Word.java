@@ -44,6 +44,6 @@ public class Word {
 
     @Override
     public int hashCode() {
-        return Objects.hash(word, occurrences);
+        return Objects.hash(word);
     }
 }
