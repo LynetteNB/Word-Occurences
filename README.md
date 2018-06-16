@@ -1,5 +1,5 @@
-# histogram-coding-challenge
-This is my submittal for HEB's Developer I coding challenge. 
+# Word-Occurences
+The number of occurences of each word in a paragraph is counted. 
 
 ## Getting Started
 Running the HistogramRunner.java file in /src directory will read input.txt. When run, ParagraphHistogram will create (or overwrite file if already exists) output.txt in root directory with a histogram of the words from input.txt.
